@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Новички: где мы их теряем</title>
+  <link rel="stylesheet" href="src/style.css">
+</head>
+<body>
+  <header>
+    <div>
+      <h1>Новички: где мы их теряем</h1>
+      <p class="sub" id="source">Загрузка демо-данных…</p>
+    </div>
+    <div class="actions">
+      <label class="button">Загрузить выгрузку задач из Битрикс24 (CSV)
+        <input type="file" id="file" accept=".csv,text/csv" hidden>
+      </label>
+      <button type="button" id="demo">Демо-данные</button>
+      <p class="privacy">Файл обрабатывается только в вашем браузере и никуда не отправляется.</p>
+    </div>
+  </header>
+  <p class="error" id="error" hidden></p>
+  <main id="app"></main>
+  <script>
+    // Browsers block JS modules on pages opened as a file; explain instead of hanging on "Загрузка…".
+    if (location.protocol === "file:") {
+      document.getElementById("source").textContent = "Страница открыта как файл";
+      const e = document.getElementById("error");
+      e.textContent = "Браузер не запускает эту страницу, открытую двойным кликом. Откройте ссылку из README или запустите локальный сервер: python3 -m http.server 8000";
+      e.hidden = false;
+    }
+  </script>
+  <script type="module" src="src/app.js"></script>
+</body>
+</html>
